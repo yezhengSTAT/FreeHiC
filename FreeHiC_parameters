@@ -1,0 +1,26 @@
+projDir="/path/to/FreeHiC/repository"
+fastqFile="ftp://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1215nnn/GSM1215593/suppl/GSM1215593_trimmedAndFiltered-TROPHOZOITES-XL-AGGG-L2" #"${projDir}/demoData/GSM1215593_trimmedAndFiltered-TROPHOZOITES-XL-AGGG-L2"
+ref="${projDir}/data/PlasmoDB-9.0_Pfalciparum3D7_Genome.fasta"
+refrag="${projDir}/data/MboI_resfrag_plasmodium.bed"
+simuName="demoSimulation"
+outDir="${projDir}/results"
+summaryFile="${projDir}/summary/${simuName}_FreeHiC.summary"
+
+bwaDir="/path/to/bwa"
+samtoolsDir="/path/to/samtools"
+bedtoolsDir="/path/to/bedtools/bin"
+
+train=1
+postProcess=1
+coreN=4
+mismatchN=3
+gapN=1
+mismatchP=""
+gapP=""
+chimericP=""
+simuN=2400000
+readLen=40
+resolution=10000
+lowerBound=$((resolution*2))
+refragU=500
+cutsite="GATCGATC"
