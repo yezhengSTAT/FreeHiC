@@ -1,6 +1,6 @@
 # FreeHi-C: high fidelity Hi-C data simulation, benchmarking and augmentation
 
-Ye Zheng and S$\"{u}$nd$\"{u}$z Kele$\c{s}$. FreeHi-C: high fidelity Hi-C data simulation, benchmarking and augmentation. BioRxiv 2019.
+Ye Zheng and Sündüz Keleş. FreeHi-C: high fidelity Hi-C data simulation, benchmarking and augmentation. BioRxiv 2019.
 
 The pipeline is developed in Keles Research Group in University of Wisconsin - Madison and please contact Ye Zheng (yezheng@stat.wisc.edu) or open an issue in the github repository for any question and suggestion. 
 
