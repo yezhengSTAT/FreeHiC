@@ -95,4 +95,4 @@ Under summary directory:
     -   nameOfSimu_FreeHiC.summary.[alignedN/allMatch/baseQS/chimericN/deletion/insertion/mismatch/revStrandN] (raw input sequencing data parameter training results)
     
 Run time:
-The whole procedure, including raw data processing, simulation and post-processing, should be expected to finish within 4 hours running the demo data using a single-core on a normal computer or server.
+- The whole procedure, including raw data processing, simulation and post-processing, should be expected to finish within 4 hours running the demo data using a single-core on a normal computer or server.
