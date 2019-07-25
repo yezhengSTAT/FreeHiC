@@ -18,7 +18,7 @@ FreeHi-C is designed for studies that are prone to simulate Hi-C interactions fr
 
     git clone https://github.com/yezhengSTAT/FreeHiC
 
-FreeHi-C installation is finished once you successsfully git clone the repository. The default setting of this FreeHi-C pipeline is a demo run utilizing a real but small Hi-C data: [Plasmodium falciparum genome Trophozoites stage](https://noble.gs.washington.edu/proj/plasmo3d). The raw input data will be downloaded automatically. In preparation for such run, you will need to install
+FreeHi-C installation is finished once you successsfully git clone the repository. The default setting of this FreeHi-C pipeline is a demo run utilizing a real but small Hi-C data: [Plasmodium falciparum genome Trophozoite stage](https://noble.gs.washington.edu/proj/plasmo3d). The raw input data will be downloaded automatically. In preparation for such run, you will need to install
 -   BWA: [BWA installation](http://bio-bwa.sourceforge.net/)  (>=0.5.9)
 -   samtools: [samtools installation](http://samtools.sourceforge.net/) (>=1.3)
 -   bedtools: [bedtools installation](https://bedtools.readthedocs.io/en/stable/content/installation.html) (>=2.27.0)
@@ -60,7 +60,7 @@ Subsequently, set the paths to the software executable file in the parameter fil
     22. resolution    : The window size of binning.
     23. lowerBound    : The lower bound for valid long-range interactions. We recommend using 2 times the resolution to remove short-range interactions.
     24. refragU       : Upper bound of the read pair distances summation from read end alignment position to its assigned RE fragment cutting site. Default value is 800.
-    25. ligateSite       : Sequences at ligation sites. This is for rescuing chimeric reads, namely reads that span the ligation sites. Please note, it is not the restriction enzyme cuting site but the sequences at the ligation sites. For example, if the restriction enzyme is HindIII which recognize "AAGCTT", the ligation site sequences should be "AAGCTAGCTT" for HindIII. Simlarly, ligateSite = "GATCGATC" for MboI.  If multiple cutters are utilized, they can be listed in an array: seqLength=("AAGCTAGCTT" "GATCGATC" "..."). If multiple cutting sites occur within one read, the shortest trimmed reads will be kept. If you do not want to rescue the chimeric reads, simply set it to be 0: ligateSite=0
+    25. ligateSite    : Sequences at ligation sites. This is for rescuing chimeric reads, namely reads that span the ligation sites. Please note, it is not the restriction enzyme cuting site but the sequences at the ligation sites. For example, if the restriction enzyme is HindIII which recognize "AAGCTT", the ligation site sequences should be "AAGCTAGCTT" for HindIII. Simlarly, ligateSite = "GATCGATC" for MboI.  If multiple cutters are utilized, they can be listed in an array: seqLength=("AAGCTAGCTT" "GATCGATC" "..."). If multiple cutting sites occur within one read, the shortest trimmed reads will be kept. If you do not want to rescue the chimeric reads, simply set it to be 0: ligateSite=0
 	
 
 ### 3. Running FreeHi-C<a id="sec-1-2-3" name="sec-1-2-3"></a>
@@ -151,7 +151,7 @@ chr1    39255   43602   HIC_chr1_11     0       +
 
 1. Parallel processing and training of input Hi-C sequencing data:
 
-FreeHi-C utilizes BWA to align the input Hi-C data. Users can make use of the multi-threading mode in BWA by setting ```coreN``` to accelerate the alignment process. Besides, if high-throughput computing resources are available, for example CHTC[CHTC homepage](chtc.cs.wisc.edu), users can first split the input Hi-C sequencing fastq file into smaller files and do it to both ends respectively and correspondingly. Then align and train the smaller sequencing file independently. Please note, the ```lineN``` parameter should take a quadruple value.
+FreeHi-C utilizes BWA to align the input Hi-C data. Users can make use of the multi-threading mode in BWA by setting ```coreN``` to accelerate the alignment process. Besides, if high-throughput computing resources are available, for example [Center for High Throughput Computing (CHTC)](chtc.cs.wisc.edu), users can first split the input Hi-C sequencing fastq file into smaller files and do it to both ends respectively and correspondingly. Then align and train the smaller sequencing file independently. Please note, the ```lineN``` parameter should take a quadruple value.
 
 ```
 lineN=4*(num of reads in each small file)
@@ -207,9 +207,10 @@ cat *.binPairs | awk '{a[$1" "$2" "$3" "$4]+=$5}END{for (i in a) print i,a[i]}' 
 ```
 
 ### 7. Run time
-- The whole procedure, including raw data processing, simulation and post-processing, should be expected to finish within 4 hours running the demo data using a single-core on a normal computer or server. The following are reference summary of runtime using GM12878, A549 and P.falciparum with respect to the sequencing depth and number of running cores. For more details, please refer to the manuscript.
+- The whole procedure, including raw data processing, simulation and post-processing, should be expected to finish within 4 hours running the demo data using a single-core on a normal computer or server. The following are reference summary of runtime and memory using GM12878, A549 and P.falciparum with respect to the sequencing depth and number of running cores. For more details, please refer to the manuscript.
 
 ![Plasmodium_runtime1](/figures/Plasmodium_runtime1.png)
 ![Plasmodium_runtime4](/figures/Plasmodium_runtime4.png)
 ![GM12878_runtime](/figures/GM12878_runtime.png)
 ![A549_runtime](/figures/A549_runtime.png)
+![A549_memory](/figures/memory.png)
