@@ -16,7 +16,7 @@ samtools=$7
 bedtools=$8
 
 train=${9:-1}
-simualte=${10:-1}
+simulate=${10:-1}
 postProcess=${11:-1}
 coreN=${12:-1}
 mismatchN=${13:-3}
