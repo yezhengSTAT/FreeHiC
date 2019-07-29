@@ -156,7 +156,7 @@ If you have problem with dependencies and software versions, container technolog
 2. Install docker: 
    - macOS: Try [Docker Mac Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-mac) first. If failed, try [Docker Toolbox (Mac)](https://docs.docker.com/toolbox/toolbox_install_mac/).
    - Windows: Try [Docker Windows Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) first. If failed, tryp [Docker Toolbox (Windows)](https://docs.docker.com/toolbox/toolbox_install_windows/).
-   -Linux: Look for the suitable [Docker Engine](https://hub.docker.com/search/?type=edition&offering=community).
+   - Linux: Look for the suitable [Docker Engine](https://hub.docker.com/search/?type=edition&offering=community).
    
 3. After installing Docker, test the Docker installation by running 
 
@@ -189,7 +189,7 @@ docker tag yezheng/freehic_docker freehic_docker
 		```-v "/path/to/input/data/folder:/FreeHiC/data"``` is to tell the FreeHi-C Docker container that data folder is "/path/to/input/data/folder". 
 		```-v "/path/to/results/folder:/FreeHiC/results" ``` is to tell the FreeHi-c Docker container that results should be saved at "/path/to/results/folder".
 
-   - If input data are saved under different path, the absolute path to the input file should be given:
+   - If input data are saved under different path, the absolute path to the input file should be given. The file name should be consistent with that in the parameter file.
    
 	   ```
 	   docker run -v "/path/to/parameter/file/FreeHiC_parameters_docker:/FreeHiC/FreeHiC_parameters" -v "/path/to/demoData/demoRep_1.fastq:/FreeHiC/data/demoRep_1.fastq" -v "/path/to/demoData/demoRep_2.fastq:/FreeHiC/data/demoRep_2.fastq" -v "/path/to/ref.fasta:/FreeHiC/data/ref.fasta" -v "/path/to/restrictFrag.bed:/FreeHiC/data/restrictFrag.bed" -v "/path/to/results:/FreeHiC/results" freehic_docker bash run_FreeHiC.sh FreeHiC_parameters
