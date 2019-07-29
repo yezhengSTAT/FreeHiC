@@ -147,7 +147,56 @@ chr1    39255   43602   HIC_chr1_11     0       +
 
 14. ```ligateSite``` records the sequences at ligation sites. This is for rescuing chimeric reads, namely reads that span the ligation sites hence contains genome sequences from two non-adjacent regions. Please note, it is not the restriction enzyme cuting site but the sequences at the ligation sites. For example, if the restriction enzyme is HindIII which recognize "AAGCTT" and have cut at each recognized site, after ligation, the sequence at each ligation site should be "AAGCTAGCTT" for HindIII. Simlarly, ligateSite = "GATCGATC" for MboI.
 
-### 6. Parallel running for large Hi-C data
+### 6. Docker image for FreeHi-C
+
+If you have problem with dependencies and software versions, container technology [Docker](https://www.docker.com/) can help address these issue. 
+
+1. Create an account at [Docker Hub](https://hub.docker.com).
+
+2. Install docker: 
+   - macOS: Try [Docker Mac Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-mac) first. If failed, try [Docker Toolbox (Mac)](https://docs.docker.com/toolbox/toolbox_install_mac/).
+   - Windows: Try [Docker Windows Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) first. If failed, tryp [Docker Toolbox (Windows)](https://docs.docker.com/toolbox/toolbox_install_windows/).
+   -Linux: Look for the suitable [Docker Engine](https://hub.docker.com/search/?type=edition&offering=community).
+   
+3. After installing Docker, test the Docker installation by running 
+
+```
+docker run hello-world
+```
+Expect something like the following:
+
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+```
+4. Pull FreeHi-C Docker image and re-name such image.
+
+```
+docker pull yezheng/freehic_docker
+docker tag yezheng/freehic_docker freehic_docker
+```
+5. Modify the parameter values in the parameter file for docker run ```FreeHiC_parameters_docker```.
+
+6. Run FreeHi-C Docker image. 
+   -  If all the input data, including raw sequencing data (fastq files), reference genome (fasta file) and restriction fragment file (bed file), are saved within the same data folder.
+   
+	   ```
+	   docker run -v "/path/to/parameter/file/FreeHiC_parameters_docker:/FreeHiC/FreeHiC_parameters" -v "/path/to/input/data/folder:/FreeHiC/data" -v "/path/to/results/folder:/FreeHiC/results" freehic_docker bash run_FreeHiC.sh FreeHiC_parameters
+	   ```
+
+		where ```-v "/path/to/parameter/file/FreeHiC_parameters_docker:/FreeHiC/FreeHiC_parameters"``` is to pass user defined parameter file, ```FreeHiC_parameters_docker```, to the Docker container.
+
+		```-v "/path/to/input/data/folder:/FreeHiC/data"``` is to tell the FreeHi-C Docker container that data folder is "/path/to/input/data/folder". 
+		```-v "/path/to/results/folder:/FreeHiC/results" ``` is to tell the FreeHi-c Docker container that results should be saved at "/path/to/results/folder".
+
+   - If input data are saved under different path, the absolute path to the input file should be given:
+   
+	   ```
+	   docker run -v "/path/to/parameter/file/FreeHiC_parameters_docker:/FreeHiC/FreeHiC_parameters" -v "/path/to/demoData/demoRep_1.fastq:/FreeHiC/data/demoRep_1.fastq" -v "/path/to/demoData/demoRep_2.fastq:/FreeHiC/data/demoRep_2.fastq" -v "/path/to/ref.fasta:/FreeHiC/data/ref.fasta" -v "/path/to/restrictFrag.bed:/FreeHiC/data/restrictFrag.bed" -v "/path/to/results:/FreeHiC/results" freehic_docker bash run_FreeHiC.sh FreeHiC_parameters
+	   ```
+All the raw data processing and simulation results are saved at ```/path/to/results```.
+
+### 7. Parallel running for large Hi-C data
 
 1. Parallel processing and training of input Hi-C sequencing data:
 
@@ -206,7 +255,7 @@ awk -v OFS="\t" '$2 == "chr1" && $3 == "chr1" {print $0}' merged.validPairs.frag
 cat *.binPairs | awk '{a[$1" "$2" "$3" "$4]+=$5}END{for (i in a) print i,a[i]}' | sort >merge.binPairs
 ```
 
-### 7. Run time
+### 8. Run time
 - The whole procedure, including raw data processing, simulation and post-processing, should be expected to finish within 4 hours running the demo data using a single-core on a normal computer or server. The following are reference summary of runtime and memory using GM12878, A549 and P.falciparum with respect to the sequencing depth and number of running cores. For more details, please refer to the manuscript.
 
 ![Plasmodium_runtime1](/figures/Plasmodium_runtime1.png)
