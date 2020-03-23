@@ -17,7 +17,7 @@ Current version: 2.0.
 
 ## What is NEW?
 
-- [March 20, 2020] [FreeHi-C Spike-in Module](/SpikeInModule/README.md) is online. FreeHi-C with a user/data-driven spike-in module allows a comprehensive comparison of differential chromatin interaction detection methods where the ground truth differential chromatin interactions are known. 
+- [March 20, 2020] [FreeHi-C Spike-in Module](/SpikeInModule) is online. FreeHi-C with a user/data-driven spike-in module allows a comprehensive comparison of differential chromatin interaction detection methods where the ground truth differential chromatin interactions are known. 
 
 
 ## FreeHi-C Usage
