@@ -29,7 +29,7 @@ Current version: 2.0.
 FreeHi-C installation is finished once you successsfully git clone the repository. The default setting of this FreeHi-C pipeline is a demo run utilizing a real but small Hi-C data: [Plasmodium falciparum genome Trophozoite stage](https://noble.gs.washington.edu/proj/plasmo3d). The raw input data will be downloaded automatically. In preparation for such run, you will need to install
 -   BWA: [BWA installation](http://bio-bwa.sourceforge.net/)  (>=0.5.9)
 -   samtools: [samtools installation](http://samtools.sourceforge.net/) (>=1.3)
--   bedtools: [bedtools installation](https://bedtools.readthedocs.io/en/stable/content/installation.html) (>=2.27.0)
+-   bedtools: [bedtools installation](https://bedtools.readthedocs.io/en/stable/content/installation.html) (<=2.25.0, for now please don't use the latest bedtools version)
 -   GNU C++ compiler (>= 4.8.1)
 -   python3 with corresponding modules required: numpy (>= 1.13.1), scipy (>= 0.19.1), pysam (>= 0.12.0), bx-python (>= 0.5.0), Cython (>= 0.27.3). For quick python module installation, python-requirements.txt is provided in this repository. Run
 
