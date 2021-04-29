@@ -157,7 +157,7 @@ Under the directory of input parameter file:
 
 2. Download or prepare your own Hi-C sequencing data (FASTQ files). Hi-C reads are paired-end reads, therefore there will be two fastq files. The two ends fastq file should have been split with matching read ID name and use the name format, *_1.fastq and *_2.fastq, to indicate the two ends. * indicate the same fastq file prefix name for two ends. Fastq files should already be unzipped. For example, in the demo run, the input fastq files are GSM1215593_trimmedAndFiltered-TROPHOZOITES-XL-AGGG-L2_1.fastq and GSM1215593_trimmedAndFiltered-TROPHOZOITES-XL-AGGG-L2_2.fastq. Therefore, the fastqFile = "GSM1215593_trimmedAndFiltered-TROPHOZOITES-XL-AGGG-L2", namely the * part.
 
-3. Download or prepare the corresponding reference genome (FASTA file) for alignment.
+3. Download or prepare the corresponding reference genome (FASTA file) for alignment. Please convert chrX, Y, M into numerical chromosome number for example, for human, chr23, 24, 25. This can also be done after alignment on the interaction bed file.
 
 4. Download or prepare the restriction enzyme fragment (BED file). HiCPro provides scripts and detailed instruction to generate such files ([http://nservant.github.io/HiC-Pro/UTILS.html#digest-genome-py](http://nservant.github.io/HiC-Pro/UTILS.html#digest-genome-py)). The restriction enzyme fragment file has six columns and provides genomic coordinates for the starting and ending positions of each fragment.
 
